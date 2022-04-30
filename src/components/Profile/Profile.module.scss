@@ -1,0 +1,99 @@
+@import '../../App.scss';
+.profile{
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    &__content{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: row;
+    }
+    &__profileDIV{
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 auto;
+        width: 250px;
+        height: 100%;
+             
+    }
+    &__profile{
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 auto;
+        width: 250px;
+        height: 100%;
+
+        border-right: 1px solid rgba(0, 0, 0, 0.0373);
+   
+        overflow: auto;
+        padding: 0px 10px 0px 0px; 
+        box-sizing: border-box;
+    }
+    &__profile::-webkit-scrollbar { 
+        width: 0; 
+    }
+    &__image img{
+        display: flex;
+        width: 100%;
+        border-radius: 10px;
+        
+    }
+    &__name{
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-size: 25px;
+        margin: 5px 0px 5px 0px;
+    }
+    &__about{
+        font-family: 'Roboto';
+        font-weight: 400;
+        font-size: 14px;
+        margin: 0px 0px 5px 0px;
+    }
+    &__dataDIV{
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        width: 100%;
+        height: 100%;
+        padding: 0px 0px 0px 10px;
+      
+      
+        
+    }
+    &__data{
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        box-sizing: border-box;
+        
+        overflow: auto;
+        
+    }
+    &__data::-webkit-scrollbar { 
+        width: 0; 
+    }
+
+    &__posts{
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        box-sizing: border-box;
+        
+        overflow: auto;
+        
+    }
+    &__posts::-webkit-scrollbar { 
+        width: 0; 
+    }
+}
