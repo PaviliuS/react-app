@@ -1,11 +1,11 @@
 import stl from './Message.module.scss';
 
-const Message = (props) => {
+const Message = ({name,text,time}) => {
     return (
         <div className={stl.message}>
-            <div className={stl.message__user}>{props.name}</div>
-            <div className={stl.message__text}>{props.text}</div>
-            <div className={stl.message__time}>{props.time}</div>
+            <div className={stl.message__user}>{name}</div>
+            <div className={stl.message__text}>{text}</div>
+            <div className={stl.message__time}>{time}</div>
         </div>
     );
 }

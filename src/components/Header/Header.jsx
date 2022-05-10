@@ -1,6 +1,6 @@
 import stl from './Header.module.scss';
 
-const Header = (props) => {
+const Header = ({userId,login,logo}) => {
     return (
         <header className={stl.header}>
 
@@ -9,10 +9,10 @@ const Header = (props) => {
                    
                 </div>
                 <div className={stl.header__logo}>
-                    {props.logo}
+                    {logo}
                 </div>
                 <div className={stl.header__auth}>
-                    Id: {props.userId} | Login: {props.login}
+                    Id: {userId} | Login: {login}
                 </div>
             </div>
         </header>

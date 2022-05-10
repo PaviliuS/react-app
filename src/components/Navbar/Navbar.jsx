@@ -1,12 +1,13 @@
 import stl from './Navbar.module.scss'
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Navbar = () => {
+const Navbar = ({userId}) => {
     return (
         <nav className={stl.menu}>
             <ul className={stl.menu__list}>
                 <li className={stl.menu__item}>
-                    <NavLink to='/profile' className={ navData => navData.isActive ? stl.activeLink : stl.Link }>Моя страница</NavLink>
+                    <NavLink to={`/profile/${userId}`} className={ navData => navData.isActive ? stl.activeLink : stl.Link }>Моя страница</NavLink>
                 </li>
                 <li className={stl.menu__item}>
                     <NavLink to='/messages' className={ navData => navData.isActive ? stl.activeLink : stl.Link }>Сообщения</NavLink>
@@ -28,4 +29,12 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+const mapStateToProps = (state) =>{
+    return{
+        userId: state.auth.userId
+    }
+}
+
+const NavbarContainer = connect(mapStateToProps,null)(Navbar); 
+
+export default NavbarContainer;

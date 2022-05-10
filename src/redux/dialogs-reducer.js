@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 
 let initialState = {
     dialogs: [
@@ -17,31 +16,24 @@ let initialState = {
         { id: '4', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
         { id: '5', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
         { id: '6', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
-        { id: '1', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
-        { id: '2', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
-        { id: '3', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
-        { id: '4', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
-        { id: '5', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
-        { id: '6', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' }
+        { id: '7', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
+        { id: '8', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
+        { id: '9', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
+        { id: '10', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
+        { id: '11', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' },
+        { id: '12', name: 'Михаил Максименко', text: 'Привет, как дела?', time: '9:30' }
     ],
-    newMessageText: '',
 };
 
 const dialogsReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_MESSAGE:{
-            let newMessage = { id: '1', name: 'Михаил Максименко', text: state.newMessageText, time: '9:45' };
+            let newMessage = { id: '1', name: 'Михаил Максименко', text: action.message, time: '9:45' };
 
             let stateCopy = {...state};
             stateCopy.messages = [...state.messages];
             stateCopy.messages.push(newMessage);
-            stateCopy.newMessageText = '';
             return stateCopy;
-        }
-        case UPDATE_MESSAGE_TEXT:{
-            let stateCopy = {...state};
-            stateCopy.newMessageText = action.text;
-            return stateCopy;          
         }
         default:{
             return state;      
@@ -49,11 +41,8 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessageActionCreator = () => {
-    return {type: ADD_MESSAGE};
-};
-export const updateMessageTextActionCreator = (text) => {
-    return {type: UPDATE_MESSAGE_TEXT, text: text};
+export const addMessageActionCreator = (message) => {
+    return {type: ADD_MESSAGE, message: message};
 };
 
 export default dialogsReducer;

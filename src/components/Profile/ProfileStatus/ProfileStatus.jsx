@@ -1,60 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import stl from './ProfileStatus.module.scss';
 
-class ProfileStatus extends React.Component {
+const ProfileStatus = (props) => {
+    let [editMode, setEditMode] = useState(false);
+    let [status, setStatus] = useState(props.status);
 
-
-    state = {
-        editMode: false,
-        status: this.props.status
+    let onEditMode = () => {
+        setEditMode(true);
+    }
+    let offEditMode = () => {
+        setEditMode(false);
+        props.updateStatusThunk(status);
+    }
+    let onChangeStatus = (e) => {
+        setStatus(e.currentTarget.value);
     }
 
-    onEditMode() {
-        this.setState({
-            editMode: true
-        })
-    }
-    offEditMode() {
-        this.setState({
-            editMode: false
-        })
-        this.props.updateStatusThunk(this.state.status);
-    }
-    onChangeStatus = (e) => {
-        this.setState({
-            status: e.currentTarget.value
-        })
-    }
+    useEffect(() => {
+        setStatus(props.status);
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            });
-        }
-    }
+    }, [props.status]);
 
-
-    render() {
-        return (
-            <div className={stl.status}>
-                <div className={stl.status__container}>
-                    {this.state.editMode === false
-                        ?
-                        <div onDoubleClick={() => this.onEditMode()} className={stl.status__text}>
-                            Статус:
-                            {this.state.status}
-                        </div>
-                        :
-                        <div onBlur={() => this.offEditMode()} className={stl.status__input}>
-                            Статус:
-                            <input onChange={this.onChangeStatus} autoFocus={true} value={this.state.status}></input>
-                        </div>
-                    }
-                </div>
+    return (
+        <div className={stl.status}>
+            <div className={stl.status__container}>
+                {editMode === false
+                    ?
+                    <div onDoubleClick={() => onEditMode()} className={stl.status__text}>
+                        Статус: {status}
+                    </div>
+                    :
+                    <div onBlur={() => offEditMode()} className={stl.status__input}>
+                        Статус: <input onChange={onChangeStatus} autoFocus={true} value={status}></input>
+                    </div>
+                }
             </div>
-        );
-    }
+        </div>
+
+    );
 }
 
-export default ProfileStatus;
+export default React.memo(ProfileStatus);
